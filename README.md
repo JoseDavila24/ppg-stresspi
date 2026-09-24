@@ -26,6 +26,6 @@ ppg-stresspi/
 
 ## Docs
 
-- [Arquitectura](docs/PPG-StressPi architecture diagram.md)
+- [Arquitectura](docs/PPG-StressPi_architecture_diagram.md)
 - [Guion de demo](docs/demo_guion.md)
 - [Referencias](docs/referencias.md)
