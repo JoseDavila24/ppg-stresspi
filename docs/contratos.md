@@ -27,7 +27,9 @@ Este documento define el formato de los datos que intercambian los componentes d
 ## 3. Contrato 1: topic `ppg-crudo`
 
 - **Descripción:** lote de señal PPG cruda del sensor MAX30102.
-- **Productor:** Raspberry Pi 5 · **Consumidores:** Spark, Pulse-PPG, Dashboard · **Frecuencia:** 1 mensaje cada 2 s (100 muestras a 50 Hz)
+- **Productor:** Raspberry Pi 5
+- **Consumidores:** Spark, Pulse-PPG, Dashboard
+- **Frecuencia:** 1 mensaje cada 2 s (100 muestras a 50 Hz)
 
 | Campo | Tipo | Unidad | Obligatorio | Descripción |
 |---|---|---|---|---|
@@ -76,7 +78,9 @@ Este documento define el formato de los datos que intercambian los componentes d
 ## 4. Contrato 2: topic `metricas-hrv`
 
 - **Descripción:** métricas de variabilidad de frecuencia cardiaca de una ventana de 30 s.
-- **Productor:** Spark · **Consumidor:** Dashboard · **Frecuencia:** 1 mensaje cada 30 s (ventana de 15 lotes de `ppg-crudo`, sin solapamiento)
+- **Productor:** Spark
+- **Consumidor:** Dashboard
+- **Frecuencia:** 1 mensaje cada 30 s (ventana de 15 lotes de `ppg-crudo`, sin solapamiento)
 
 | Campo | Tipo | Unidad | Obligatorio | Descripción |
 |---|---|---|---|---|
@@ -119,7 +123,9 @@ Este documento define el formato de los datos que intercambian los componentes d
 ## 5. Contrato 3: topic `estado-estres`
 
 - **Descripción:** clasificación del estado del sujeto por Pulse-PPG (embeddings de 512 dimensiones + clasificador).
-- **Productor:** Pulse-PPG · **Consumidor:** Dashboard · **Frecuencia:** 1 mensaje cada 30 s (coincide con la ventana de análisis)
+- **Productor:** Pulse-PPG
+- **Consumidor:** Dashboard
+- **Frecuencia:** 1 mensaje cada 30 s (coincide con la ventana de análisis)
 
 | Campo | Tipo | Unidad | Obligatorio | Descripción |
 |---|---|---|---|---|
