@@ -1,0 +1,34 @@
+# SQLite (volumen compartido, se genera en runtime)
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Pesos del modelo (descargar desde Zenodo, no subir a Git)
+pc/pulseppg/weights/*
+!pc/pulseppg/weights/.gitkeep
+
+# Logs y datos temporales
+*.log
+*.csv
+*.npy
+
+# Docker
+*.pid
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
