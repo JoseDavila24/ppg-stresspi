@@ -29,3 +29,4 @@ ppg-stresspi/
 - [PPG-StressPi_architecture_diagram](docs/PPG-StressPi_architecture_diagram.md)
 - [Guion de demo](docs/demo_guion.md)
 - [Referencias](docs/referencias.md)
+- [Contratos](docs/contratos.md)
