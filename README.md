@@ -1,27 +1,30 @@
+
 # PPG-StressPi
 
-Sistema de monitoreo de estrés en tiempo real que integra IoT y BigData: adquisición de señal PPG con MAX30102 en Raspberry Pi 5, pipeline de eventos con Kafka (KRaft), análisis batch con Spark, y clasificación con el modelo fundacional Pulse-PPG.
+Sistema de monitoreo de estrés en tiempo real con MAX30102, Raspberry Pi 5 y pipeline de datos con Kafka (KRaft), Spark y Pulse-PPG.
 
 ## Arquitectura
 
-- **Zona 1 — Raspberry Pi 5**: adquisición de señal PPG cruda (50 Hz) y publicación en Kafka.
-- **Zona 2 — PC con Docker**: Kafka (KRaft), Spark (métricas HRV), Pulse-PPG (clasificación), Dashboard Flask.
-- **Zona 3 — Usuario**: navegador accediendo al dashboard.
+- **Pi 5**: adquiere señal PPG cruda (50 Hz) y publica en Kafka.
+- **PC con Docker**: Kafka, Spark (métricas HRV), Pulse-PPG (clasificación), Dashboard Flask.
+- **Usuario**: dashboard web con señal, métricas y estado.
 
 ## Estructura
-ppg-stresspi/
-├── pi5/ # Código de la Raspberry Pi 5
-├── pc/ # Backend con Docker
-├── data/ # Volumen SQLite (no se sube a Git)
-├── docs/ # Documentación y diagramas
-└── README.md
 
+```
+ppg-stresspi/
+├── pi5/      # Código de la Raspberry Pi 5
+├── pc/       # Backend con Docker
+├── data/     # SQLite (no se sube a Git)
+├── docs/     # Documentación
+└── README.md
+```
 
 ## Estado
 
-🚧 En desarrollo — versión inicial de la estructura.
+🚧 En desarrollo — estructura inicial.
 
-## Documentación
+## Docs
 
 - [Arquitectura](docs/arquitectura.md)
 - [Guion de demo](docs/demo_guion.md)
