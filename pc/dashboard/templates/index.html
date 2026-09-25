@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PPG-StressPi · Dashboard</title>
+  <style>
+    :root { --fondo:#f6f7f9; --tarjeta:#fff; --texto:#1d2330; --tenue:#667085; --ok:#12805c; --mal:#b42318; --borde:#e4e7ec; }
+    @media (prefers-color-scheme: dark) {
+      :root { --fondo:#12151c; --tarjeta:#1b2029; --texto:#e6e8ee; --tenue:#98a2b3; --ok:#3ccb8f; --mal:#f97066; --borde:#2b3240; }
+    }
+    body { margin:0; font:15px/1.5 system-ui, sans-serif; background:var(--fondo); color:var(--texto); }
+    main { max-width:720px; margin:0 auto; padding:32px 16px; }
+    h1 { font-size:1.5rem; margin:0 0 4px; }
+    .tenue { color:var(--tenue); }
+    .tarjeta { background:var(--tarjeta); border:1px solid var(--borde); border-radius:10px; padding:16px 20px; margin-top:16px; }
+    .fila { display:flex; justify-content:space-between; gap:12px; padding:4px 0; }
+    .ok { color:var(--ok); font-weight:600; } .mal { color:var(--mal); font-weight:600; }
+    a { color:inherit; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>PPG-StressPi</h1>
+  <p class="tenue">✅ Sistema iniciado · {{ iniciado }} (UTC)</p>
+
+  <div class="tarjeta">
+    <strong>Estado de conexiones</strong>
+    <div class="fila"><span>Kafka</span><span id="kafka" class="tenue">consultando…</span></div>
+    <div class="fila"><span>SQLite</span><span id="sqlite" class="tenue">consultando…</span></div>
+    <div class="fila"><span>Filas en metricas / estado</span><span id="filas" class="tenue">—</span></div>
+  </div>
+
+  <div class="tarjeta">
+    <strong>Enlaces</strong>
+    <div class="fila"><a href="/health">/health</a><span class="tenue">healthcheck</span></div>
+    <div class="fila"><a href="/api/status">/api/status</a><span class="tenue">Kafka y SQLite</span></div>
+    <div class="fila"><a href="/api/metricas">/api/metricas</a><span class="tenue">últimas 20 ventanas HRV</span></div>
+    <div class="fila"><a href="/api/estado">/api/estado</a><span class="tenue">últimos 20 estados</span></div>
+  </div>
+
+  <!-- TODO: aquí van las gráficas en vivo (señal PPG, BPM/SDNN/RMSSD y estado) vía WebSocket -->
+</main>
+<script>
+  function pinta(id, ok, texto) {
+    const el = document.getElementById(id);
+    el.textContent = texto;
+    el.className = ok ? "ok" : "mal";
+  }
+  async function actualizar() {
+    try {
+      const r = await (await fetch("/api/status")).json();
+      pinta("kafka", r.kafka.conectado, r.kafka.conectado ? "conectado" : "sin conexión");
+      pinta("sqlite", r.sqlite.conectado, r.sqlite.conectado ? "conectado · " + r.sqlite.journal_mode : "no disponible");
+      const t = r.sqlite.tablas || {};
+      document.getElementById("filas").textContent = (t.metricas ?? "—") + " / " + (t.estado ?? "—");
+    } catch (e) {
+      pinta("kafka", false, "error"); pinta("sqlite", false, "error");
+    }
+  }
+  actualizar();
+  setInterval(actualizar, 5000);
+</script>
+</body>
+</html>
