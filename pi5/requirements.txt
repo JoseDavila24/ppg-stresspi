@@ -1,0 +1,11 @@
+# Kafka (fork mantenido, compatible con Python 3.12)
+kafka-python-ng==2.2.3
+
+# Cálculo numérico
+numpy==1.26.4
+
+# Comunicación I2C con el MAX30102 (solo Pi 5 real)
+smbus2==0.5.0
+
+# Tests
+pytest==8.2.2

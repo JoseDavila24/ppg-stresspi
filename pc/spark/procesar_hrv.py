@@ -129,7 +129,7 @@ class ConsumidorPPG:
                     self.topic,
                     bootstrap_servers=self.bootstrap,
                     group_id=self.grupo,
-                    auto_offset_reset="latest",  # en vivo: solo mensajes nuevos
+                    auto_offset_reset="earliest",  # en vivo: solo mensajes nuevos
                     enable_auto_commit=True,
                     **opciones_timeout_kafka(),
                 )
